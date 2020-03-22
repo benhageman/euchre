@@ -1,4 +1,5 @@
 import java.util.Collections;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class Player {
@@ -10,6 +11,11 @@ public class Player {
     Team team;
     boolean bidWon = false;
     int dCount = 0, cCount = 0, hCount = 0, sCount = 0;
+    Scanner input = new Scanner(System.in);
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
+
 
     public Player(String nameIn){
         name = nameIn;
@@ -84,7 +90,7 @@ public class Player {
         //System.out.println("------------------------------");
 
         if (numCards == 6) {
-            System.out.println(nameIn);
+            System.out.println(getTeam().getColor() + nameIn + ANSI_RESET);
             System.out.println(hand.get(0).simpleGetFace() + hand.get(0).getSymbol() + ", " + hand.get(1).simpleGetFace() + hand.get(1).getSymbol() + ", " + hand.get(2).simpleGetFace() + hand.get(2).getSymbol() + ", " + hand.get(3).simpleGetFace() + hand.get(3).getSymbol() + ", " + hand.get(4).simpleGetFace() + hand.get(4).getSymbol() + ", " + hand.get(5).simpleGetFace() + hand.get(5).getSymbol());
         } else if (numCards == 5) {
             System.out.println(nameIn);
@@ -107,8 +113,8 @@ public class Player {
         }
     }
 
-    void makeBid(int q, int s){
-        if(game.checkBid(q,s,game.getCurRound().getBidQ(),game.getCurRound().getBidS(),team))
+    void makeBid(int q, int s, Team thisTeam, Team otherTeam){
+        if(game.checkBid(q,s,game.getCurRound().getBidQ(),game.getCurRound().getBidS(),thisTeam,otherTeam))
         {
             game.getCurRound().setCurrentBid(q,s);
         }
@@ -124,5 +130,14 @@ public class Player {
             hCount--;
         else // if suitIn == 4
             sCount--;
+    }
+
+    void playCard(Vector cards, Round r){
+        printHandWithName(name);
+        System.out.println(ANSI_YELLOW + "Enter card to be played (1-6)." + ANSI_RESET);
+        int cardNum = input.nextInt();
+        cards.add(hand.get(cardNum-1));
+        hand.remove(cardNum-1);
+        System.out.println(r.getCardsPlayed());
     }
 }

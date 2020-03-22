@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 
 
+
 public class main{
     public static void main(String[] args) {
 
@@ -91,11 +92,11 @@ public class main{
             System.out.println("Round " + (i + 1));
             cpu1.firstAutoBid();
             tempR.printCurrentBid();
-            cpu2.computerBid();
+            //cpu2.computerBid();
             tempR.printCurrentBid();
-            cpu3.computerBid();
+            //cpu3.computerBid();
             tempR.printCurrentBid();
-            cpu4.computerBid();
+            //cpu4.computerBid();
             tempR.printCurrentBid();
             tempR.setTargetTrickCount(tempR.getBidQ());
             // Print the team that won bid

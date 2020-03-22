@@ -28,21 +28,24 @@ public class Game {
     // Must cannot bid same number of tricks without changing suit, can bid same number if they go high, can bid same number in suit if upbidding low
     // Quant (0 = pass, 1-6)
     // Suit (0 = low, 1 = diamond, 2 = club, 3 = heart, 4 = spade, 5 = high)
-    boolean checkBid(int quant, int suit, int exQuant, int exSuit, Team t){
+    boolean checkBid(int quant, int suit, int exQuant, int exSuit, Team thisTeam, Team otherTeam){
         if(quant > 6 | quant < 0){return false;}
         if(suit < 0 | suit > 5){return false;}
 
         if(quant > exQuant){
-            t.bidWinner = true;
+            thisTeam.bidWinner = true;
+            otherTeam.bidWinner = false;
             return true;}                   // Bid q is larger than exBid q
         if(quant == exQuant & exSuit == 0 & suit != 0){
-            t.bidWinner = true;
+            thisTeam.bidWinner = true;
+            otherTeam.bidWinner = false;
             return true;}                   // Bid q is same but existing bid was low, new bid is not low
         if(quant == exQuant & exSuit != 5 & suit == 5){
-            t.bidWinner = true;
+            thisTeam.bidWinner = true;
+            otherTeam.bidWinner = false;
             return true;}                   // Bid q is same, but new bid is high, existing bid was not high
 
-        t.bidWinner = false;
+        //thisTeam.bidWinner = false;
         return false;
     }
     void addTXpoint(){x.currentPoints++;}

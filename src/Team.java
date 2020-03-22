@@ -1,7 +1,7 @@
 import java.util.Vector;
 
 public class Team {
-    Integer currentPoints;
+    public Integer currentPoints;
     Vector<Player> roster = new Vector<Player>();
     String tColor;
     boolean bidWinner;
@@ -44,5 +44,8 @@ public class Team {
     }
 
     String getColor(){return tColor;}
+    public String getScore(){
+      return (getColor() + currentPoints + ANSI_RESET);
+    }
 
 }

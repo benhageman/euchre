@@ -30,7 +30,7 @@ public class cpu {
         }
     }
 
-    void computerBid(){
+/*    void computerBid(){
         if(inhPlayer.dCount >= inhPlayer.cCount & inhPlayer.dCount >= inhPlayer.sCount & inhPlayer.dCount >= inhPlayer.hCount){
             if(game.checkBid(inhPlayer.dCount,1, game.getCurRound().getBidQ(),game.getCurRound().getBidS(),cpuTeam))
             {
@@ -56,7 +56,7 @@ public class cpu {
                 game.getCurRound().setCurrentBid(inhPlayer.sCount,3);
             }
         }
-    }
+    }*/
 
     // Finds lowest card and removes from hand
     Card findLow(int n){
